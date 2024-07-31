@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/Board")
 public class BoardController {
 
+	//데이터 조회용 컨트롤러
+	
 	private final BoardService BS;
 	
 	@GetMapping(value = {"/findList", "/findList/{accept:[0-1]}"})
@@ -39,5 +42,14 @@ public class BoardController {
 	public TestDTO save(@ModelAttribute Board board) {
 		return BS.save(board);
 	}
+	
+	@GetMapping(value = {"/list","/list/{accept:[0-1]}"})
+	public String list(Model model,@PathVariable (name = "accept", required = false) String accept) {
+		model.addAttribute("list", BS.findList(accept).getResult());
+		return "list";
+	}
+	
+	
+	
 	
 }

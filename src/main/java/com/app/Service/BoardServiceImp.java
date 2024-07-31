@@ -18,34 +18,30 @@ public class BoardServiceImp implements BoardService {
 	
 	@Override
 	public TestDTO findList(String accept) {
-		dto = TestDTO.builder().build();
-		dto.setStatus(true);
-		dto.setMessage("성공");
+		dto = TestDTO.builder().status(true).message("성공").build();
 		if(accept != null) {
 			dto.setResult(BR.findByAccept(("1".equals(accept)? true : false)));
 		} else {
 			dto.setResult(BR.findAll());
 		}
-		
 		return dto;
 	}
 
 	@Override
 	public TestDTO fineOne(int no) {
-		dto = TestDTO.builder().build();
-		dto.setStatus(true);
-		dto.setMessage("성공");
-		dto.setResult(BR.findById(no));
-		return dto;
+		return TestDTO.builder()
+				.status(true)
+				.message("성공")
+				.Result(BR.findById(no))
+				.build();
 	}
 
 	@Override
 	public TestDTO save(Board board) {
-		dto = TestDTO.builder().build();
-		dto.setStatus(true);
-		dto.setMessage("성공");
-		dto.setResult(BR.save(board));
-		return dto;
+		return TestDTO.builder()
+				.status(true).message("성공")
+				.Result(BR.save(board))
+				.build();
 	}
 
 	@Override

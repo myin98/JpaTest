@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TestDTO {
 
-	private boolean status;
-	private String message;
-	private Object Result;
+	private boolean status;	//성공 여부 확인
+	private String message;	//오류 로그 확인
+	private Object Result;	//객체를 담아줄 오브젝트
 	
 }
